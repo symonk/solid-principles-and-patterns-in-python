@@ -4,38 +4,38 @@
  
     | Information | Hyperlink |
     | ------ | ------ |
-    | Violation | [plugins/dropbox/README.md][PlDb] |
-    | Rectification | [plugins/github/README.md][PlGh] |
-    | Overview / Summary | [plugins/googledrive/README.md][PlGd] |
+    | Violation | [http://www.google.com][Link] |
+    | Rectification | [http://www.google.com][Link] |
+    | Overview / Summary | [http://www.google.com][Link] |
 
  - **Open Closed Principle**
  
     | Information | Hyperlink |
     | ------ | ------ |
-    | Violation | [plugins/dropbox/README.md][PlDb] |
-    | Rectification | [plugins/github/README.md][PlGh] |
-    | Overview / Summary | [plugins/googledrive/README.md][PlGd] |
+    | Violation | [http://www.google.com][Link] |
+    | Rectification | [http://www.google.com][Link] |
+    | Overview / Summary | [http://www.google.com][Link] |
 
  - **Liskov Substitution Principle**
  
     | Information | Hyperlink |
     | ------ | ------ |
-    | Violation | [plugins/dropbox/README.md][PlDb] |
-    | Rectification | [plugins/github/README.md][PlGh] |
-    | Overview / Summary | [plugins/googledrive/README.md][PlGd] |
+    | Violation | [http://www.google.com][Link] |
+    | Rectification | [http://www.google.com][Link] |
+    | Overview / Summary | [http://www.google.com][Link] |
 
  - **Interface Segregation Principle**
  
     | Information | Hyperlink |
     | ------ | ------ |
-    | Violation | [plugins/dropbox/README.md][PlDb] |
-    | Rectification | [plugins/github/README.md][PlGh] |
-    | Overview / Summary | [plugins/googledrive/README.md][PlGd] |
+    | Violation | [http://www.google.com][Link] |
+    | Rectification | [http://www.google.com][Link] |
+    | Overview / Summary | [http://www.google.com][Link] |
 
  - **Dependency Inversion Principle**
  
     | Information | Hyperlink |
     | ------ | ------ |
-    | Violation | [plugins/dropbox/README.md][PlDb] |
-    | Rectification | [plugins/github/README.md][PlGh] |
-    | Overview / Summary | [plugins/googledrive/README.md][PlGd] |
+    | Violation | [http://www.google.com][Link] |
+    | Rectification | [http://www.google.com][Link] |
+    | Overview / Summary | [http://www.google.com][Link] |
