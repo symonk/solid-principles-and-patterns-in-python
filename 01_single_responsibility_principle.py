@@ -71,6 +71,7 @@ class OrderManager:
         invoice.send()
         return invoice
 
+
 """
 To summarise the code above, and why it is suboptimal we have to think of a few different things,
 for each of these we will look to solve them using various SOLID approaches and OOP principles:
@@ -87,3 +88,64 @@ So how can we go about fixing this to be more testable and more maintainable?
 """
 
 # ------------------------------------------ Rectifications ------------------------------------------
+
+from typing import Protocol  # noqa
+from typing import runtime_checkable  # noqa
+
+
+@runtime_checkable
+class Dispatchable(Protocol):
+    def dispatch(self) -> None:
+        ...
+
+
+class InvoiceDispatcher:
+    """
+    An invoice dispatcher, solely responsible for shipping out invoices to customers.
+    There may be multiple ways to dispatch.
+    """
+    def __init__(self, dispatchable: Dispatchable) -> None:
+        self.dispatchable = dispatchable
+
+    def send_invoice(self) -> Dispatchable:
+        """
+        Not relying on a concrete implementation, but an interface which describes the
+        ability to send something, that could be via email or otherwise.
+        :return: The dispatchable instance
+        """
+        self.dispatchable.dispatch()
+        return self.dispatchable
+
+
+class Invoice(Dispatchable):  # noqa
+    def __init__(self, recipient: str, total: float):
+        self.recipient = recipient
+        self.total = total
+
+    def dispatch(self) -> None:
+        ...
+
+
+@runtime_checkable
+class Discountable(Protocol):
+
+    def calculate(self) -> float:
+        ...
+
+
+class Discounter:
+    ...
+
+
+def main():
+    """
+
+    :return:
+    """
+    ...
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
