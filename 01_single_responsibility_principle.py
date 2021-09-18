@@ -54,7 +54,7 @@ class OrderManager:
         :return: The newly calculated price, post discount if applicable.
         """
         if self.recipient == "tenpercent@foobar.com":
-            return self.price / 100 * self.price
+            return self.price / 100 * 10
         elif self.recipient == "fiftypercent@foobar.com":
             return self.price / 100 * 50
         return self.price
