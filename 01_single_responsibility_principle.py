@@ -118,29 +118,71 @@ class InvoiceDispatcher:
 
 
 class Invoice(Dispatchable):  # noqa
+    """
+    A simple representation of an invoice.  It is no longer responsible for calculating
+    the total price, but merely storing some state in relation to an order and when
+    required, sending the invoice / pricing to the customer.
+    """
     def __init__(self, recipient: str, total: float):
         self.recipient = recipient
         self.total = total
 
+    def __repr__(self) -> str:
+        return f"Invoice(recipient={self.recipient}, total={self.total})"
+
     def dispatch(self) -> None:
-        ...
+        print(f"Emailing: {self.recipient} an invoice with the total of: {self.total}")
 
 
 @runtime_checkable
 class Discountable(Protocol):
+    """
+    A simple interface to benefit from polymorphism later, this provides the benefits of
+    allowing new discounting strategies to be created, client code can subclass and
+    implement their own if necessary and that's where the benefits and maintainability
+    come into full effect.
+    """
 
-    def calculate(self) -> float:
+    def calculate(self, price: float) -> float:
         ...
 
 
+class TenPercentDiscountStrategy(Discountable):
+    """
+    Simple implementation that reduces the price by 10%
+    """
+
+    def calculate(self, price: float) -> float:
+        return price / 100 * 90
+
+
+class FiftyPercentDiscountStrategy(Discountable):
+    """
+    Simple implementation that reduces the price by half.
+    """
+
+    def calculate(self, price: float) -> float:
+        return price / 100 * 50
+
+
 class Discounter:
-    ...
+    def __init__(self, discountable: Discountable) -> None:
+        self.discountable = discountable
+
+    def get_discount(self, price: float) -> float:
+        return self.discountable.calculate(price)
 
 
 def main():
     """
-
-    :return:
+    >>> recipient = "foo@bar.com"
+    >>> price = 875.00
+    >>> discounter = Discounter(FiftyPercentDiscountStrategy())
+    >>> invoice = Invoice(recipient, discounter.get_discount(price))
+    >>> dispatcher = InvoiceDispatcher(invoice)
+    >>> dispatcher.send_invoice()
+    Emailing: foo@bar.com an invoice with the total of: 437.5
+    Invoice(recipient=foo@bar.com, total=437.5)
     """
     ...
 
