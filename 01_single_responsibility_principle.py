@@ -23,8 +23,9 @@ class Invoice:
     """
     A representation of an invoice.
     """
-    def __init__(self, recipient: str) -> None:
+    def __init__(self, recipient: str, total: float) -> None:
         self.recipient = recipient
+        self.total = total
 
     def send(self) -> None:
         print(f"Sending invoice in an email to: {self.recipient}")
@@ -66,7 +67,7 @@ class OrderManager:
         things, creating an invoice and dispatching it.
         :return:
         """
-        invoice = Invoice(self.recipient)
+        invoice = Invoice(self.recipient, self.calculate_discount())
         invoice.send()
         return invoice
 
