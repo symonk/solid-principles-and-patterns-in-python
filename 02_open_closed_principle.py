@@ -71,7 +71,7 @@ our existing code in order to support that, why does this suck?
     * Clients code is in limbo really, core library function logic needs updated here?
     * We are touching unrelated code, always increasing the risk of breaking something unintentionally?
     
-See below for the changes we would need to support our new electric car
+See below for the changes we would need to support our new electric car:
 """
 
 
@@ -138,7 +138,7 @@ class Refuellable(ABC):
     """
     @abstractmethod
     def refuel(self):
-        ...
+        raise NotImplementedError
 
 
 class Car(Refuellable):  # noqa
