@@ -2,10 +2,11 @@
 The strategy pattern enables selecting an algorithm at runtime, rather than implementing a single
 algorithm directly.  Code receives runtime instructions as to which in a family of algorithms to
 use.  Deferring the decision about which algorithm to use allows the calling to be more flexible
-and cohesive.
+and maintainable.
 
 
-The example below allows a car instance to brake in various ways, decided entirely at runtime.
+The example below allows clients to sort a container of integers anyway they see fit.  It is extendible
+by design.
 """
 from typing import Protocol
 from typing import MutableSequence
