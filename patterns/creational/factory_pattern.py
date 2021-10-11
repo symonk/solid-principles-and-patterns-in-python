@@ -74,6 +74,10 @@ if __name__ == "__main__":
 
 # --------------------------------------------------------------------------------------------------------------
 
+"""
+You may have noticed that this factory function is a direct violation of the single responsibility principle.
+see `factory_pattern_dynamic_registration.py` for an example of auto registration of factories.
+"""
 
 
 
