@@ -4,6 +4,10 @@ registration to automatically have the factory function be 'aware' of `Localizer
 instances.  Let's revisit and see if we can improve things.  This can be done via a
 `Metaclass` or via the `__init_subclass` new dunder method (python 3.6+).  For the
 sake of simplicity, we will try with the `__init_subclass__` dunder.
+
+Now any user defined code can avail of our factory function, as long as they implement
+our interface and provide a language variable, the factory function no longer has to
+change, it will automatically consider it an option for retrieving the values from.
 """
 
 
