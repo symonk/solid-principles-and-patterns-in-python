@@ -8,13 +8,29 @@ file in this directory. (Typically an observer has a list of observers and itera
 to notify them in a synchronous way, pub sub typically uses a message queue / broker and works in
 an asynchronous fashion.
 
-
-Todo: In the example outlined below, use of interfaces could make things more extensible as well
-as provide better typing support, arguably there is a violation of the dependency inversion
-principle here as things are relying on concrete implementations, e.g `Provider` and `Subscriber`.
-
 """
 import typing
+
+
+class Runnable(typing.Protocol):
+    """
+    A simple interface for subscribers that can run / process a message.
+    """
+
+    def run(self, message: str) -> None:
+        raise NotImplementedError
+
+
+class SupportsSubscribing(typing.Protocol):
+    """
+    A simple interface for something which can be subscribed to.
+    """
+
+    def subscribe(self, message: str, subscriber: Runnable) -> None:
+        raise NotImplementedError
+
+    def unsubscribe(self, message: str, subscriber: Runnable) -> None:
+        raise NotImplementedError
 
 
 class Provider:
@@ -25,15 +41,15 @@ class Provider:
 
     def __init__(self) -> None:
         self.message_queue: typing.List[str] = []
-        self.subscribers: typing.Dict[str, typing.List[Subscriber]] = {}
+        self.subscribers: typing.Dict[str, typing.List[Runnable]] = {}
 
     def notify(self, message: str) -> None:
         self.message_queue.append(message)
 
-    def subscribe(self, message: str, subscriber) -> None:
+    def subscribe(self, message: str, subscriber: Runnable) -> None:
         self.subscribers.setdefault(message, []).append(subscriber)
 
-    def unsubscribe(self, message: str, subscriber) -> None:
+    def unsubscribe(self, message: str, subscriber: Runnable) -> None:
         self.subscribers[message].remove(subscriber)
 
     def update(self) -> None:
@@ -50,6 +66,7 @@ class Publisher:
     have no awareness of the publisher, they both use the message broker / message queue
     middleman.
     """
+
     def __init__(self, provider: Provider) -> None:
         self.provider = provider
 
@@ -63,15 +80,15 @@ class Subscriber:
     for a given message.
     """
 
-    def __init__(self, name: str, provider: Provider) -> None:
+    def __init__(self, name: str, provider: SupportsSubscribing) -> None:
         self.name = name
         self.provider = provider
 
     def subscribe(self, message: str) -> None:
         self.provider.subscribe(message, self)
 
-    def unsubscribe(self) -> None:
-        self.provider.unsubscribe(self)
+    def unsubscribe(self, message: str) -> None:
+        self.provider.unsubscribe(message, self)
 
     def run(self, message: str) -> None:
         print(f"Subscriber: {self.name} received message: {message}")
@@ -79,7 +96,21 @@ class Subscriber:
 
 def main() -> None:
     """
-
+    >>> provider = Provider()
+    >>> s1 = Subscriber(name="First", provider=provider)
+    >>> s2 = Subscriber(name="Second", provider=provider)
+    >>> publisher = Publisher(provider=provider)
+    >>> s1.subscribe("subscriber one; reporting for duty!")
+    >>> s2.subscribe("subscriber two; reporting for duty!")
+    >>> publisher.publish("subscriber one; reporting for duty!")
+    >>> publisher.publish("subscriber two; reporting for duty!")
+    >>> provider.message_queue
+    ['subscriber one; reporting for duty!', 'subscriber two; reporting for duty!']
+    >>> provider.update()
+    Subscriber: First received message: subscriber one; reporting for duty!
+    Subscriber: Second received message: subscriber two; reporting for duty!
+    >>> provider.message_queue
+    []
     """
     import doctest
     doctest.testmod()
