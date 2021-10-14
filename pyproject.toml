@@ -1,0 +1,5 @@
+[tool.isort]
+profile = "black"
+src_paths = ["patterns"]
+line_length = 120
+multi_line_output = 3

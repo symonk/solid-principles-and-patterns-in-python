@@ -24,11 +24,11 @@ repos:
       - id: detect-private-key
       - id: requirements-txt-fixer
   -   repo: https://github.com/pre-commit/mirrors-isort
-      rev: '45886b75933e6460aa4883fc9b93452528d4384b'
+      rev: v5.9.3
       hooks:
       -   id: isort
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.902
+    rev: v0.910-1
     hooks:
     -   id: mypy
         args: []
