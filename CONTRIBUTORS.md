@@ -9,4 +9,4 @@ Contributing changes or new patterns and principles is straight forward:
  - Apply your changes; `git add <files>`, `git commit -m "<message here>"`.
  - During commit, `pre-commit` will automatically run and lint your files if installed correctly.
  - Push to your fork: `git push`.
- - Open the PR from your fork branch `cool-new-pattern` -> the repository `main` branch (target).
+ - Open the PR from your fork branch `cool-new-pattern` -> the repository `master` branch (target).
