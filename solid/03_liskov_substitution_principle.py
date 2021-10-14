@@ -2,7 +2,7 @@
 The liskov substitution principles is one of the simplest principles; in a nutshell it states
 that if `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of
 type `S`.  This is the corner stone of inheritance and polymorphism.  Good implementations of
-the single responsibility principle often result in liskov subtitution principle being handled
+the single responsibility principle often result in liskov substitution principle being handled
 cleanly too.
 """
 
@@ -51,7 +51,7 @@ def main() -> None:
     >>> perform_calculations(two) # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ...
-    TypeError: calculate() missing 2 required positional argument: 'multiplier'
+    TypeError: calculate() missing 1 required positional argument: 'multiplier'
     >>> two_fixed = S2(150)
     >>> perform_calculations(two_fixed)
     300
