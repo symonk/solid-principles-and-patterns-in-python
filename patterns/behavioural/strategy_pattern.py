@@ -8,8 +8,7 @@ and maintainable.
 The example below allows clients to sort a container of integers anyway they see fit.  It is extendible
 by design.
 """
-from typing import Protocol
-from typing import MutableSequence
+from typing import MutableSequence, Protocol
 
 
 class Sortable(Protocol):
@@ -31,6 +30,7 @@ class MagicNumbers:
     is what good use of the strategy pattern promotes; as well as a great
     example of relying on interfaces rather than concrete implementations.
     """
+
     def __init__(self, data: MutableSequence, sortable: Sortable):
         self.data = data
         self.sortable = sortable
@@ -44,6 +44,7 @@ class MagicNumbers:
 
 
 # -------------------------------- Strategy Implementations -------------------------------- #
+
 
 class Reverse(Sortable):
     """
@@ -85,4 +86,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-

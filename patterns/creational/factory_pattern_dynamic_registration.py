@@ -9,15 +9,15 @@ Now any user defined code can avail of our factory function, as long as they imp
 our interface and provide a language variable, the factory function no longer has to
 change, it will automatically consider it an option for retrieving the values from.
 """
+from __future__ import annotations
 
-
-from abc import ABC
-from abc import abstractmethod
+import typing
+from abc import ABC, abstractmethod
 from typing import Optional
 
 
 class Localizable(ABC):
-    registry = {}
+    registry: typing.Dict[str, typing.Type[Localizable]] = {}
 
     def __init_subclass__(cls, language: Optional[str], **kwargs):  # noqa
         """
@@ -27,7 +27,7 @@ class Localizable(ABC):
         :param kwargs:
         :return:
         """
-        super().__init_subclass__(**kwargs)
+        super().__init_subclass__(**kwargs)  # type: ignore
         if language is not None:
             cls.registry[language.lower()] = cls
 
@@ -75,6 +75,7 @@ def main() -> None:
     'Brillo Solar'
     """
     import doctest
+
     doctest.testmod()
 
 

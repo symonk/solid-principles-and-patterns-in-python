@@ -23,6 +23,7 @@ class Invoice:
     """
     A representation of an invoice.
     """
+
     def __init__(self, recipient: str, total: float) -> None:
         self.recipient = recipient
         self.total = total
@@ -42,6 +43,7 @@ class OrderManager:
     some terrible violations of the single responsibility principle, depending
     on the recipient we apply a different discount... (Never do this).
     """
+
     def __init__(self, price: float, recipient: str) -> None:
         self.price = price
         self.recipient = recipient
@@ -79,7 +81,7 @@ for each of these we will look to solve them using various SOLID approaches and 
     * calculate_discount is not closed for modification (OCP - see 02) and will constantly need modified.
     * dispatch_invoice is coupled to a concrete implementation by instantiating an `Invoice` directly (Testability/DIP?)
     * OrderManager has two reasons to change, calculating pricing or sending invoices (SRP).
-    
+
 So how can we go about fixing this to be more testable and more maintainable?
 
     * OrderManager can delegate its workload classes housing those single responsibilities.
@@ -104,6 +106,7 @@ class InvoiceDispatcher:
     An invoice dispatcher, solely responsible for shipping out invoices to customers.
     There may be multiple ways to dispatch.
     """
+
     def __init__(self, dispatchable: Dispatchable) -> None:
         self.dispatchable = dispatchable
 
@@ -123,6 +126,7 @@ class Invoice(Dispatchable):  # noqa
     the total price, but merely storing some state in relation to an order and when
     required, sending the invoice / pricing to the customer.
     """
+
     def __init__(self, recipient: str, total: float):
         self.recipient = recipient
         self.total = total

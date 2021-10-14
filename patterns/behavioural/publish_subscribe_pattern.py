@@ -113,6 +113,7 @@ def main() -> None:
     []
     """
     import doctest
+
     doctest.testmod()
 
 

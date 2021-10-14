@@ -11,14 +11,15 @@ instantiated, that is part of the responsibility of the factory function.
 At a glance, the default implementation tends to be be a direct violation of the single
 responsibility principle; later here we will demonstrate how we can potentially use
 automatic registration of class instances to make the factory function aware of them.
+
+You may have noticed that this factory function is a direct violation of the single responsibility principle.
+see `factory_pattern_dynamic_registration.py` for an example of auto registration of factories.
 """
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
 class Localizable(ABC):
-
     @abstractmethod
     def localize(self, word: str) -> str:
         raise NotImplementedError
@@ -48,8 +49,7 @@ def get_localizer(language: str) -> Localizable:
     handle the instantiation will require modification of this
     function (dict).
     """
-    mapping = {"english": EnglishLocalizer,
-               "greek": GreekLocalizer}
+    mapping = {"english": EnglishLocalizer, "greek": GreekLocalizer}
     return mapping[language.lower()]()
 
 
@@ -66,6 +66,7 @@ def main() -> None:
     'αντιο σας'
     """
     import doctest
+
     doctest.testmod()
 
 
@@ -73,11 +74,3 @@ if __name__ == "__main__":
     main()
 
 # --------------------------------------------------------------------------------------------------------------
-
-"""
-You may have noticed that this factory function is a direct violation of the single responsibility principle.
-see `factory_pattern_dynamic_registration.py` for an example of auto registration of factories.
-"""
-
-
-

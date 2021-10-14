@@ -5,9 +5,7 @@ dispatching a request.  A receiving object delegates it's operations to it's del
 """
 
 
-from typing import Callable
-from typing import Union
-from typing import Any
+from typing import Any, Callable, Union
 
 
 class Mobile:
@@ -32,6 +30,7 @@ class SmartMobile:
 
         def wrapper(*args, **kwargs):
             return attr(*args, **kwargs)
+
         return wrapper
 
     def download_updates(self) -> None:

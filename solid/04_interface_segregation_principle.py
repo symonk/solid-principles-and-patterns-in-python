@@ -8,8 +8,7 @@ that it does not use, only to implement noop methods in places.
 
 # ------------------------------------------ Violations ------------------------------------------
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
 class IDevice(ABC):
@@ -92,7 +91,7 @@ class LandLine(IDevice):
 
 """
 Often as outlined here, violations of the interface segregation principle result in
-violations of the single responsibility principle.  We can go about solving some 
+violations of the single responsibility principle.  We can go about solving some
 of these problems by keeping our interfaces small.  Smaller interfaces promote much
 better reusability and maintainability of our code.  Let's try solve this below:
 """
@@ -128,4 +127,3 @@ class IViewWebPage(ABC):
     @abstractmethod
     def view_webpage(self, target: str) -> None:
         raise NotImplementedError
-
