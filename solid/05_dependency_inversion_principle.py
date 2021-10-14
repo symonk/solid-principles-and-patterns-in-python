@@ -96,13 +96,13 @@ class AirMailShipper(Shippable):
 
 
 """
-The main differences here are the additional protocol/interafaces we have defined.
+The main differences here are the additional protocol/interfaces we have defined.
 This buys us the following benefits:
 
     * `AirMailShipper` and `ImprovedStamper` rely on some sort of `content` that can be provided at runtime.
     * `AirMailShipper` is reliant on something `stampable` which can be extended and supplied at runtime.
-    * Another shipping class could be used easily, `TrainShipper` for example without the need to refactor.
-    * Another stamped could be used easily without the need to refactor.
+    * Another `Shippable` class could be used easily, `TrainShipper` for example without the need to refactor.
+    * Another `Stampable` implementation could be used easily without the need to refactor, e.g `FoilStamper`.
     * `ContainsContent` allows other things to be stamped and printed without refactoring, e.g a `Magazine` class.
     * Testability has improved ten fold.
 """
