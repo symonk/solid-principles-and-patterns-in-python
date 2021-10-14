@@ -17,6 +17,7 @@ class Car:
     """
     A trivial representation of a car.
     """
+
     def __init__(self, fuel_type: str) -> None:
         self.fuel_type = fuel_type
 
@@ -37,6 +38,7 @@ class FuelStation:
     Based on the fuel type of the car, the station decides which underlying function to call in order to refuel
     it.
     """
+
     def refuel(self, car: Car) -> None:
         if car.fuel_type == "petrol":
             self._fill_with_petrol(car)
@@ -70,7 +72,7 @@ our existing code in order to support that, why does this suck?
     * It's only a matter of time until we need another fuel type in the future?
     * Clients code is in limbo really, core library function logic needs updated here?
     * We are touching unrelated code, always increasing the risk of breaking something unintentionally?
-    
+
 See below for the changes we would need to support our new electric car:
 """
 
@@ -117,6 +119,7 @@ class FuelStation:  # noqa
         """
         print(f"Filling {car} with diesel..")
 
+
 """
 As you can see, this is horrible and an overly complex, unmaintainable coupled mess.
 It is very likely to need to keep constantly changing, limits consumer code and
@@ -128,14 +131,14 @@ Let's fix it, below is a better design to achieve the same outcome:
 
 # ------------------------------------------ Rectifications ------------------------------------------
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
 class Refuellable(ABC):
     """
     A simple interface, for anything that is 'refuellable'.
     """
+
     @abstractmethod
     def refuel(self):
         raise NotImplementedError
@@ -145,6 +148,7 @@ class Car(Refuellable):  # noqa
     """
     An abstract Car base class
     """
+
     def __init__(self, fuel_type: str) -> None:
         self.fuel_type = fuel_type
 
@@ -157,6 +161,7 @@ class PetrolCar(Car):
     """
     Over simplified representation of a petrol fuelled car.
     """
+
     def __init__(self) -> None:
         super().__init__("petrol")
 
@@ -168,6 +173,7 @@ class DieselCar(Car):
     """
     Over simplified representation of a diesel fuelled car.
     """
+
     def __init__(self) -> None:
         super().__init__("diesel")
 
@@ -179,6 +185,7 @@ class ElectricCar(Car):
     """
     Over simplified representation of an electric powered car.
     """
+
     def __init__(self) -> None:
         super().__init__("electric")
 
@@ -227,6 +234,7 @@ class FighterJet(Refuellable):
     """
     The client has added a new fighter jet that needs fuelled, no problem with our new design!
     """
+
     def __init__(self, horse_power: float, brand: str):
         self.horse_power = horse_power
         self.brand = brand

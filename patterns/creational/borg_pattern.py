@@ -15,7 +15,7 @@ import typing
 
 
 class BorgMixin:
-    __monostate = {}
+    __monostate: typing.Dict[typing.Any, typing.Any] = {}
 
     def __init__(self) -> None:
         """
@@ -31,6 +31,7 @@ class SharedState(BorgMixin):
     instead we can create as many as we like, updating the state freely and
     guaranteeing that all existing instances will all be kept in sync.
     """
+
     def __init__(self, state: typing.Optional[typing.Any] = None) -> None:
         super().__init__()
         if state is not None:
@@ -63,6 +64,7 @@ def main() -> None:
     ('how now brown cow', 'how now brown cow')
     """
     import doctest
+
     doctest.testmod()
 
 
