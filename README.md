@@ -95,12 +95,12 @@ The steps to follow to contribute to any projects:
     git add .
     ```
 
-10.  ### Check for your changes.
+10. ### Check for your changes.
     ```
     git status
     ```
 
-11.  ### Commit all the changes
+11. ### Commit all the changes
     Write commit message as "Small Message"
     
     ```
