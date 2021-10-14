@@ -1,5 +1,5 @@
-files: patterns/
 exclude: ^(.venv)$
+files: '(patterns|solid)'
 repos:
   - repo: 'https://github.com/ambv/black'
     rev: 18.6b4
@@ -19,7 +19,6 @@ repos:
       - id: flake8
         args: ['--max-line-length=120']
       - id: check-case-conflict
-      - id: check-docstring-first
       - id: debug-statements
       - id: detect-private-key
       - id: requirements-txt-fixer

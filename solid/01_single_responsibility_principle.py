@@ -120,7 +120,7 @@ class InvoiceDispatcher:
         return self.dispatchable
 
 
-class Invoice(Dispatchable):  # noqa
+class Invoice(Dispatchable):  # type: ignore
     """
     A simple representation of an invoice.  It is no longer responsible for calculating
     the total price, but merely storing some state in relation to an order and when

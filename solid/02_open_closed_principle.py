@@ -10,6 +10,8 @@ make maintaining code much easier.
     * (C)losed for modification.
 """
 
+from abc import ABC, abstractmethod
+
 # ------------------------------------------ Violations ------------------------------------------
 
 
@@ -77,7 +79,7 @@ See below for the changes we would need to support our new electric car:
 """
 
 
-class FuelStation:  # noqa
+class FuelStation:  # type: ignore # noqa
     """
     The same old `FuelStation` class, with added support for the electric car.
     How long until we need to do this yet again?
@@ -131,8 +133,6 @@ Let's fix it, below is a better design to achieve the same outcome:
 
 # ------------------------------------------ Rectifications ------------------------------------------
 
-from abc import ABC, abstractmethod
-
 
 class Refuellable(ABC):
     """
@@ -144,7 +144,7 @@ class Refuellable(ABC):
         raise NotImplementedError
 
 
-class Car(Refuellable):  # noqa
+class Car(Refuellable):  # type: ignore
     """
     An abstract Car base class
     """
@@ -193,7 +193,7 @@ class ElectricCar(Car):
         print(f"Recharging the {self.fuel_type} car...")
 
 
-class FuelStation:  # noqa
+class FuelStation:  # type: ignore # noqa
     """
     A simple implementation of the FuelStation.
     """
