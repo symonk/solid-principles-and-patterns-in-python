@@ -13,7 +13,7 @@ Need Your first pr for hacktoberfest 2k21 ? come on in
 <div align="center">
 Participate in Hacktoberfest by contributing to any Open Source project on GitHub! Here is a starter project for first-time contributors.
 <br>
-[Visit website](https://hacktoberfest.digitalocean.com/)
+Visit website: https://hacktoberfest.digitalocean.com
 
 </div>
 <hr>
@@ -94,19 +94,24 @@ The steps to follow to contribute to any projects:
     ```
     git add .
     ```
+
 10.  ### Check for your changes.
     ```
     git status
     ```
+
 11.  ### Commit all the changes
     Write commit message as "Small Message"
+    
     ```
     git commit -m "Write a meaningfull but small commit message"
     ```
+
 12. ### Push the changes for review
     ```
-    git push origin <branch-name>
+    git push origin cool-new-pattern
     ```
+
 13. ### Create a PR on Github.
         Just hit the create a pull request button, you must write a PR message to clarify why and what are you contributing
     <hr>
